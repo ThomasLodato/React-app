@@ -1,7 +1,7 @@
 {
   "name": "git-test",
   "version": "1.0.0",
-  "description": "This is the Git and Node basic learning project",
+  "description": "This is the React and Node basic learning project",
   "main": "index.html",
   "scripts": {
     "start": "npm run lite",
@@ -10,11 +10,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://jogesh_k_muppala@bitbucket.org/jogesh_k_muppala/git-test.git"
+    "url": "git+https://github.com/ThomasLodato/React-app.git"
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/jogesh_k_muppala/git-test#readme",
+  "homepage": "https://github.com/ThomasLodato/React-app#readme",
   "devDependencies": {
     "lite-server": "^2.2.2"
   }
