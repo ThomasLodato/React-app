@@ -14,7 +14,7 @@
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://github.com/ThomasLodato/React-app#readme",
+  "homepage": "https://github.com/ThomasLodato/React-app",
   "devDependencies": {
     "lite-server": "^2.2.2"
   }
