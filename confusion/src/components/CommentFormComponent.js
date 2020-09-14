@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, Label, Input, Row, Col } from 'reactstrap';
-import { LocalForm, Control } from 'react-redux-form'
+import { Button, Modal, ModalHeader, ModalBody, Label, Row, Col } from 'reactstrap';
+import { LocalForm, Control, Errors } from 'react-redux-form'
+
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !(val) || (val.length <= len);
+const minLength = (len) => (val) => val && (val.length >= len);
 
 class CommentForm extends Component {
 
@@ -8,21 +12,21 @@ class CommentForm extends Component {
         super(props);
     
         this.state = {
-          isModalOpen: false
+            isModalOpen: false
         };
         this.toggleModal = this.toggleModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
 
-      toggleModal() {
-        this.setState({
-            isModalOpen: !this.state.isModalOpen
-          });
+        toggleModal() {
+            this.setState({
+                isModalOpen: !this.state.isModalOpen
+            });
       }
 
-      handleSubmit(values) {
-        console.log("Current State is: " + JSON.stringify(values));
-        alert("Current State is: " + JSON.stringify(values));
+        handleSubmit(values) {
+            console.log("Current State is: " + JSON.stringify(values));
+            alert("Current State is: " + JSON.stringify(values));
     }
 
     render() {
@@ -50,20 +54,34 @@ class CommentForm extends Component {
                             </Row>
                             <Row className="form-group">
                                 <Col>
-                                    <Label htmlfor="username">Your Name</Label>
-                                    <Input type="text" id="username" name="username" placeholder="Your Name"
-                                    innerRef={(input) => this.username = input} />
+                                    <Label htmlfor="author">Your Name</Label>
+                                    <Control.text model=".author" id="author" name="author" 
+                                        placeholder="Your Name" className="form-control"
+                                        validators={{required, minLength: minLength(3), maxLength: maxLength(15)}} />
+                                    <Errors className="text-danger"
+                                            model=".author"
+                                            show="touched"
+                                            messages={{
+                                                required: 'Required ',
+                                                minLength: 'Must be greater than 2 characters ',
+                                                maxLength: 'Must be 15 characters or less '
+                                            }}
+                                        />
                                 </Col>
                             </Row>
                             <Row className="form-group">
                                 <Col>
                                     <Label htmlFor="comment">Comment</Label>
                                     <Control.textarea model=".comment" id="comment" name="comment"
-                                        rows="8"
+                                        rows="6"
                                         className="form-control" />
                                 </Col>
                                 </Row>
-                            <Button type="submit" value="submit" className="bg-primary">Login</Button>
+                            <Row className="form-group">
+                                <Col md={{size:10, offset:2}}>
+                                    <Button type="submit" className="bg-primary">Submit</Button>
+                                </Col>
+                            </Row>
                         </LocalForm>
                     </ModalBody>
                 </Modal>
