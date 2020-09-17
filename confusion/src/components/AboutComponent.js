@@ -2,12 +2,14 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
+import { Stagger, Fade } from 'react-animation-components';
 
 function About(props) {
 
     function RenderLeader({leader}){
         if (leader != null)
         return(
+            <Fade in>
             <Media>
                 <Media className="col-2">
                     <img className="align-self-start mr-3" src={baseUrl + leader.image} alt="Leader image"></img>
@@ -20,6 +22,7 @@ function About(props) {
                     <p>{leader.description}</p>
                 </Media>
             </Media>
+            </Fade>
         );
         else {
             return(
@@ -30,7 +33,9 @@ function About(props) {
 
     const leaders = props.leaders.leaders.map((leader) => {
         return (
-            <RenderLeader leader={leader} />
+            <Stagger in>
+                <RenderLeader leader={leader} />
+            </Stagger>
         );
     });
 
